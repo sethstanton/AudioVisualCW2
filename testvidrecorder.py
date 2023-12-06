@@ -38,7 +38,7 @@ class VideoRecorder(object):
 
         self.codec = cv.VideoWriter_fourcc('m', 'p', '4', 'v')
 
-        self.frame_rate = 30
+        self.frame_rate = 15
         self.output_video = cv.VideoWriter(self.video_file_name, self.codec, self.frame_rate, (self.frame_width, self.frame_height))
         assert self.output_video.isOpened(), "Failed to open video writer"
 
@@ -106,11 +106,11 @@ class AudioRecorder():
 
 
 if __name__ == '__main__':
-    # names = ['Test']
+    names = ['Test']
     # names = ["PomatoPlant", "PlasticStraw", "Johnathan", "Nathan"]
     recorded_names = set()  # Set to keep track of names already recorded
-    names = ['Chiedozie', 'Seth', 'Marc', 'Ryan', 'Charlie', 'Francesca', 'Nischal', 'Carlos', 'Lindon', 'James',
-                  'Sam', 'Jack', 'Ethan', 'Bonney', 'William', 'Yubo', 'El', 'Jake', 'Robin', 'Ben']
+    # names = ['Chiedozie', 'Seth', 'Marc', 'Ryan', 'Charlie', 'Francesca', 'Nischal', 'Carlos', 'Lindon', 'James',
+    #               'Sam', 'Jack', 'Ethan', 'Bonney', 'William', 'Yubo', 'El', 'Jake', 'Robin', 'Ben']
 
     for name in names:  # Loop through the list of names
         print(f"Recording : {name}")
