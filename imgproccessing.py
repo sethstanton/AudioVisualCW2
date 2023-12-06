@@ -1,3 +1,5 @@
+import os
+
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
@@ -9,6 +11,9 @@ notes
     * read in with img.shape
 
 """
+
+
+
 video = cv2.VideoCapture('recordings/output_Yubo_video_21.mp4')
 
 # fps = video.get(cv2.CAP_PROP_FPS)
@@ -33,6 +38,15 @@ while ret:
     ret, frame = video.read()
 
 
+# def frame_extractor
+#     video =cv2.VideoCapture
+#
+
+
+# to iterate through a folder called recordings where 20 names for each name
+# I have audio wav files, just visual mp4 files, and a combined audio visual mp4
+# files. I need a folder for each person and i need a folder for each sample for
+# that person. I have 50 samples for each person.
 
 # video = cv2.VideoCapture('recordings/output_Yubo_video_21.mp4')
 
