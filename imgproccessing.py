@@ -1,5 +1,4 @@
 import os
-
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
@@ -12,7 +11,7 @@ notes
 
 """
 
-
+'''
 
 video = cv2.VideoCapture('recordings/output_Yubo_video_21.mp4')
 
@@ -36,7 +35,7 @@ while ret:
     cv2.waitKey(0)
     i+=1
     ret, frame = video.read()
-
+'''
 
 # def frame_extractor
 #     video =cv2.VideoCapture
@@ -85,6 +84,56 @@ while ret:
 
 # video.release()
 # cv2.destroyAllWindows()
+
+def extract_frames_from_subdirs(parent_dir):
+    # Loop through all subdirectories in the parent directory
+    for subdir in os.listdir(parent_dir):
+        subdir_path = os.path.join(parent_dir, subdir)
+
+        # Check if the path is indeed a directory
+        if os.path.isdir(subdir_path):
+            # Find the video file inside the subdirectory
+            for file in os.listdir(subdir_path):
+                if file.endswith(".mp4"):
+                    video_path = os.path.join(subdir_path, file)
+                    process_video(video_path)
+
+def process_video(video_path):
+    # Create a VideoCapture object
+    video = cv2.VideoCapture(video_path)
+
+    # Check if the video opened successfully
+    if not video.isOpened():
+        print(f"Error: Could not open video {video_path}.")
+        return
+
+    # Extract the directory and base name from the video path
+    base_dir, video_file = os.path.split(video_path)
+    base_name = os.path.splitext(video_file)[0]
+
+    # Initialize frame count
+    frame_count = 0
+
+    # Read until video is completed
+    while True:
+        # Capture frame-by-frame
+        ret, frame = video.read()
+
+        # Break the loop if there are no more frames
+        if not ret:
+            break
+
+        # Save frame as JPEG file
+        output_filename = os.path.join(base_dir, f"{base_name}_frame_{frame_count}.jpg")
+        cv2.imwrite(output_filename, frame)
+        frame_count += 1
+
+    # When everything is done, release the video capture object
+    video.release()
+    print(f"Extraction complete for {video_path}. {frame_count} frames were saved.")
+
+# Example usage - replace 'recordings/Yubo' with the correct parent directory path
+extract_frames_from_subdirs('test_recordings/Yubo')
 
 
 
